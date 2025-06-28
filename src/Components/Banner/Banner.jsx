@@ -3,7 +3,7 @@ import { FaFacebook, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 const Banner = () => {
   return (
-    <section className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white pt-32 pb-20 px-6">
+    <section className=" text-black pt-32 pb-20 px-6">
       <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-12">
 
         {/* === Left Side: Text Content === */}
@@ -11,7 +11,7 @@ const Banner = () => {
           <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
             Hi, I'm <span className="text-primary">Majedul Islam Nayem</span>
           </h1>
-          <p className="text-lg text-gray-300 mb-6 max-w-xl">
+          <p className="text-lg  mb-6 max-w-xl">
             A passionate Front-End Developer crafting responsive websites using React, TailwindCSS, and modern web technologies. Let's build something great together!
           </p>
 

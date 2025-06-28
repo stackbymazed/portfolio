@@ -31,7 +31,7 @@ const ProjectCard = ({ title, description, images, liveLink, githubLink }) => {
                 key={idx}
                 src={img}
                 alt={`Project screenshot ${idx + 1}`}
-                className="w-full h-80 md:h-96 object-cover rounded"
+                className="w-full h-80 md:h-96 border border-gray-500 object-cover rounded"
               />
             ))}
           </Slider>

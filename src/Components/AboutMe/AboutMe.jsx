@@ -2,8 +2,8 @@ import React from 'react';
 
 const AboutMe = () => {
     return (
-        <section id="about" className="bg-base-100 py-16 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center">
+        <section id="about" className=" py-16 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto text-center bg-gray-50">
                 <h2 className="text-4xl font-bold text-primary mb-8">About Me</h2>
 
                 <p className="text-gray-700 text-lg leading-relaxed mb-8 max-w-3xl mx-auto">
@@ -14,13 +14,13 @@ const AboutMe = () => {
                     My ambition is to grow into a skilled <span className="text-primary font-semibold">Full-Stack Developer</span>, and I am actively exploring backend technologies such as <span className="font-semibold">Node.js</span>, <span className="font-semibold">Express</span>, <span className="font-semibold">MongoDB</span>, along with authentication using <span className="font-semibold">Firebase</span> and <span className="font-semibold">JWT</span>. Outside of web development, I enjoy learning <span className="font-semibold">Python</span> to diversify my skill set.
                 </p>
 
-               <a
-  href="/cv.pdf"
-  download
-  className="btn btn-primary px-10 py-3 text-lg font-semibold inline-flex items-center justify-center mb-6"
->
-  Download Resume
-</a>
+                <a
+                    href="/cv.pdf"
+                    download
+                    className="btn btn-primary px-10 py-3 text-lg font-semibold inline-flex items-center justify-center mb-6"
+                >
+                    Download Resume
+                </a>
 
 
             </div>

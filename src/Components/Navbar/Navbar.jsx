@@ -20,7 +20,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/blog" className={({ isActive }) => isActive ? "text-primary font-semibold" : "hover:text-primary"}>
+        <NavLink  className={({ isActive }) => isActive ? "text-primary font-semibold" : "hover:text-primary"}>
           Blog
         </NavLink>
       </li>
