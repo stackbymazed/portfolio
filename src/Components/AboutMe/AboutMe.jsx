@@ -48,12 +48,12 @@ const AboutMe = () => {
 
             {/* Resume Button with Icon */}
             <a
-              href="https://your-resume-link.com"
+              href="https://drive.google.com/file/d/1MI_hWKpJVUjTNC2wskCkd7Cnzot69y1D/view"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-blue-700 text-white px-8 py-3 rounded-lg shadow-md text-lg font-semibold hover:bg-blue-800 transition mx-auto md:mx-0"
             >
-              <FaReact className="text-white text-xl" />
+              {/* <FaReact className="text-white text-xl" /> */}
               Download Resume
             </a>
           </div>

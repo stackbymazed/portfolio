@@ -13,7 +13,7 @@ export const ParticlesBackground = () => {
 
   return (
     <Particles
-      id="tsparticles"
+      id="tsparticles "
       init={particlesInit}
       loaded={particlesLoaded}
       style={{
@@ -22,7 +22,7 @@ export const ParticlesBackground = () => {
         left: 0,
         width: "100%",
         height: "100%", // Banner সেকশন ঢেকে রাখবে
-        zIndex: 0,
+        zIndex: 20,
       }}
       options={{
         background: {

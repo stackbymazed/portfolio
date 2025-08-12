@@ -10,7 +10,7 @@ import {
 
 const ContactForm = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#e9eefc] p-6">
+    <div id='contact' className="min-h-screen flex flex-col items-center justify-center bg-[#e9eefc] p-6">
       {/* Centered Title */}
       <div className="text-center mb-8">
         <div className="flex justify-center items-center text-3xl font-bold text-black">

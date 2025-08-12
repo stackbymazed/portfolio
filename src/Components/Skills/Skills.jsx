@@ -44,7 +44,7 @@ const skills = [
 
 const Skills = () => {
   return (
-    <section className="bg-[#4B0082] py-16 px-4 sm:px-8 md:px-16 lg:px-24">
+    <section id='skills' className="bg-[#4B0082] py-16 px-4 sm:px-8 md:px-16 lg:px-24">
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-white text-4xl font-bold mb-12 flex items-center justify-center gap-3">
           <FaLaptopCode className="text-white text-4xl" />

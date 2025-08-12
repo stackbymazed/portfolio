@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router";
 import { HashLink } from "react-router-hash-link";
 
 const Navbar = () => {
@@ -7,8 +8,8 @@ const Navbar = () => {
     { name: "About", path: "#about" },
     { name: "Skills", path: "#skills" },
     { name: "Education", path: "#education" },
-    { name: "Work", path: "#work" },
-    { name: "Experience", path: "#experience" },
+    { name: "Projects", path: "#projects" },
+    // { name: "Experience", path: "#experience" },
     { name: "Contact", path: "#contact" },
   ];
 
@@ -29,17 +30,36 @@ const Navbar = () => {
             <HashLink
               smooth
               to={`/${item.path}`}
-              onClick={() => setActiveLink(item.path)} 
-              className={`relative pb-1 transition-all duration-300 font-bold ${
-                activeLink === item.path
-                  ? "text-blue-600 font-bold after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-blue-600"
-                  : "text-gray-800 hover:text-blue-600"
-              }`}
+              onClick={() => setActiveLink(item.path)}
+              className={`relative pb-1 transition-all duration-300 font-bold ${activeLink === item.path
+                ? "text-blue-600 font-bold after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-blue-600"
+                : "text-gray-800 hover:text-blue-600"
+                }`}
             >
               {item.name}
             </HashLink>
           </li>
         ))}
+        <li>
+          {/* <Link to='https://drive.google.com/file/d/1MI_hWKpJVUjTNC2wskCkd7Cnzot69y1D/view' className="pb-1 transition-all duration-300 font-bold "> */}
+            <a
+              href="https://drive.google.com/file/d/1MI_hWKpJVUjTNC2wskCkd7Cnzot69y1D/view"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pb-1 transition-all duration-300 font-bold "
+            >
+              Resume 
+            </a>
+          {/* </Link> */}
+          {/* <a
+            href="https://example.com/my-resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 sm:px-10 py-3 text-lg rounded-full bg-gradient-to-r from-indigo-600 to-blue-500 text-white shadow-lg hover:shadow-xl transition flex items-center gap-2 mx-auto lg:mx-0"
+          >
+          Resume
+          </a> */}
+        </li>
       </ul>
     </nav>
   );
