@@ -1,65 +1,86 @@
-import React, { useRef, useState } from 'react';
-import emailjs from 'emailjs-com';
-import { FaPaperPlane } from 'react-icons/fa';
+import React from 'react';
+import {
+  FaUser,
+  FaEnvelope,
+  FaPhone,
+  FaPaperPlane,
+  FaCommentDots,
+  FaHeadset,
+} from 'react-icons/fa';
 
-const Contact= () => {
-  const form = useRef();
-  const [status, setStatus] = useState('');
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs.sendForm(
-      'YOUR_SERVICE_ID',     // replace these
-      'YOUR_TEMPLATE_ID',
-      form.current,
-      'YOUR_PUBLIC_KEY'
-    )
-    .then(() => {
-      setStatus('✅ Message sent successfully!');
-      e.target.reset();
-    }, () => {
-      setStatus('❌ Failed to send. Try again later.');
-    });
-  };
-
+const ContactForm = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 py-10">
-      <div className="w-full max-w-xl">
-        <h2 className="text-4xl font-bold text-primary text-center mb-4">Contact Me</h2>
-        <p className="text-gray-700 text-center mb-8">
-          Have something to say? Fill out the form below and I’ll get back to you as soon as I can.
-        </p>
-
-        <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-4">
-          <input
-            type="text"
-            name="user_name"
-            placeholder="Your Name"
-            className="input input-bordered w-full"
-            required
-          />
-          <input
-            type="email"
-            name="user_email"
-            placeholder="Your Email"
-            className="input input-bordered w-full"
-            required
-          />
-          <textarea
-            name="message"
-            placeholder="Write your message..."
-            className="textarea textarea-bordered h-32 resize-none w-full"
-            required
-          />
-          <button type="submit" className="btn btn-primary w-full flex justify-center items-center gap-2">
-            <FaPaperPlane /> Send Message
-          </button>
-          {status && <p className="text-center mt-2 font-medium text-green-600">{status}</p>}
-        </form>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[#e9eefc] p-6">
+      {/* Centered Title */}
+      <div className="text-center mb-8">
+        <div className="flex justify-center items-center text-3xl font-bold text-black">
+          <FaHeadset className="mr-2" />
+          Get In <span className="text-purple-600 ml-1">Touch</span>
+        </div>
       </div>
-    </section>
+
+      {/* Main Content: Image + Form */}
+      <div className="bg-white rounded-xl shadow-md flex flex-col md:flex-row overflow-hidden max-w-6xl w-full">
+        {/* Left - Image */}
+        <div className="md:w-1/2 bg-white flex items-center justify-center p-8">
+          <img
+            src="https://i.ibb.co.com/gbG9hyqm/man-having-conference-call-his-260nw-1706178394.png"
+            alt="Contact Illustration"
+            className="w-full h-auto object-cover"
+          />
+        </div>
+
+        {/* Right - Form */}
+        <div className="md:w-1/2 bg-white p-8">
+          <form className="space-y-4">
+            <div className="flex items-center border rounded-md px-3 py-2 bg-[#e9f0ff]">
+              <FaUser className="text-gray-600 mr-3" />
+              <input
+                type="text"
+                placeholder="Name"
+                className="bg-transparent focus:outline-none w-full"
+              />
+            </div>
+
+            <div className="flex items-center border rounded-md px-3 py-2 bg-[#e9f0ff]">
+              <FaEnvelope className="text-gray-600 mr-3" />
+              <input
+                type="email"
+                placeholder="Email"
+                className="bg-transparent focus:outline-none w-full"
+              />
+            </div>
+
+            <div className="flex items-center border rounded-md px-3 py-2 bg-[#e9f0ff]">
+              <FaPhone className="text-gray-600 mr-3" />
+              <input
+                type="tel"
+                placeholder="Phone"
+                className="bg-transparent focus:outline-none w-full"
+              />
+            </div>
+
+            <div className="flex items-start border rounded-md px-3 py-2 bg-[#e9f0ff]">
+              <FaCommentDots className="text-gray-600 mr-3 mt-1" />
+              <textarea
+                placeholder="Message"
+                className="bg-transparent focus:outline-none w-full h-24 resize-none"
+              ></textarea>
+            </div>
+
+            <div className="text-right">
+              <button
+                type="submit"
+                className="flex items-center gap-2 bg-[#2200ff] text-white px-6 py-2 rounded-md hover:bg-[#1a00cc] transition"
+              >
+                Submit <FaPaperPlane />
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default Contact;
+export default ContactForm;

@@ -1,55 +1,71 @@
-import React from 'react';
-import Particles from 'react-tsparticles';
-import { loadFull } from 'tsparticles';
+import { useCallback } from "react";
+import Particles from "react-tsparticles";
+import { loadSlim } from "tsparticles-slim";
 
-const ParticlesBackground = () => {
-  const particlesInit = async (main) => {
-    await loadFull(main);
-  };
+export const ParticlesBackground = () => {
+  const particlesInit = useCallback(async (engine) => {
+    await loadSlim(engine);
+  }, []);
+
+  const particlesLoaded = useCallback(async (container) => {
+    console.log(container);
+  }, []);
 
   return (
     <Particles
       id="tsparticles"
       init={particlesInit}
+      loaded={particlesLoaded}
+      style={{
+        position: "absolute", // ব্যাকগ্রাউন্ডে রাখবে
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%", // Banner সেকশন ঢেকে রাখবে
+        zIndex: 0,
+      }}
       options={{
-        fullScreen: { enable: true, zIndex: -1 }, // Behind everything
         background: {
           color: {
-            value: "#0f172a", // Dark grayish background
+            value: "#FFFF01", // ব্যাকগ্রাউন্ড রঙ
           },
         },
-        fpsLimit: 60,
+        fpsLimit: 120,
         interactivity: {
           events: {
-            onHover: { enable: true, mode: 'repulse' },
+            onClick: { enable: true, mode: "push" },
+            onHover: { enable: true, mode: "repulse" },
             resize: true,
           },
           modes: {
-            repulse: { distance: 100, duration: 0.4 },
+            push: { quantity: 4 },
+            repulse: { distance: 200, duration: 0.4 },
           },
         },
         particles: {
-          color: { value: "#38bdf8" }, // Light blue particles
+          color: { value: "#ffffff" },
           links: {
-            color: "#38bdf8",
+            color: "#ffffff",
             distance: 150,
             enable: true,
-            opacity: 0.3,
+            opacity: 0.5,
             width: 1,
           },
           move: {
+            direction: "none",
             enable: true,
+            outModes: { default: "bounce" },
+            random: false,
             speed: 2,
-            direction: 'none',
-            outModes: { default: 'bounce' },
+            straight: false,
           },
           number: {
             density: { enable: true, area: 800 },
-            value: 50,
+            value: 80,
           },
           opacity: { value: 0.5 },
-          shape: { type: 'circle' },
-          size: { value: { min: 1, max: 4 } },
+          shape: { type: "circle" },
+          size: { value: { min: 1, max: 5 } },
         },
         detectRetina: true,
       }}
@@ -57,4 +73,3 @@ const ParticlesBackground = () => {
   );
 };
 
-export default ParticlesBackground;

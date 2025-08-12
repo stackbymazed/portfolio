@@ -1,31 +1,66 @@
 import React from 'react';
+import { FaReact, FaUser } from 'react-icons/fa';
 
 const AboutMe = () => {
-    return (
-        <section id="about" className=" py-16 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center bg-gray-50">
-                <h2 className="text-4xl font-bold text-primary mb-8">About Me</h2>
+  return (
+    <section id="about" className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <div className="max-w-6xl mx-auto">
 
-                <p className="text-gray-700 text-lg leading-relaxed mb-8 max-w-3xl mx-auto">
-                    Hello! I'm <span className="font-semibold text-gray-900">Majedul Islam Nayem</span>, a passionate <span className="text-primary font-semibold">Front-End Developer</span> dedicated to crafting beautiful and user-friendly digital experiences. With strong expertise in <span className="font-semibold">React</span>, <span className="font-semibold">Tailwind CSS</span>, and modern JavaScript, I transform designs into seamless, high-performance websites.
-                </p>
+        {/* Header with Logo and Title */}
+        <div className="flex items-center justify-center gap-4 mb-12">
+          <FaUser className="text-blue-600 text-4xl" />
+          <h2 className="text-3xl sm:text-4xl font-bold text-black">
+            About <span className="text-purple-600">Me</span>
+          </h2>
+        </div>
 
-                <p className="text-gray-700 text-lg leading-relaxed mb-10 max-w-3xl mx-auto">
-                    My ambition is to grow into a skilled <span className="text-primary font-semibold">Full-Stack Developer</span>, and I am actively exploring backend technologies such as <span className="font-semibold">Node.js</span>, <span className="font-semibold">Express</span>, <span className="font-semibold">MongoDB</span>, along with authentication using <span className="font-semibold">Firebase</span> and <span className="font-semibold">JWT</span>. Outside of web development, I enjoy learning <span className="font-semibold">Python</span> to diversify my skill set.
-                </p>
+        {/* Main Content: Image & Text side by side and center-aligned */}
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-8 lg:px-20">
+          {/* Profile Image */}
+          <div className="flex-1 flex justify-center md:justify-start">
+            <img
+              src="https://i.ibb.co/qFY7XSYf/Air-Brush-20240201194436-2.jpg"
+              alt="Majedul Islam"
+              className="rounded-lg shadow-lg w-4/5 sm:w-3/5 md:w-full max-w-sm object-cover"
+            />
+          </div>
 
-                <a
-                    href="/cv.pdf"
-                    download
-                    className="btn btn-primary px-10 py-3 text-lg font-semibold inline-flex items-center justify-center mb-6"
-                >
-                    Download Resume
-                </a>
+          {/* Text Info */}
+          <div className="flex-1 text-center md:text-left">
+            <h3 className="text-2xl sm:text-3xl font-bold mb-2">I'm Majedul Islam</h3>
+            <p className="text-blue-700 font-semibold mb-4 text-lg sm:text-xl">
+              Front-End Developer
+            </p>
 
+            <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-6 max-w-xl mx-auto md:mx-0">
+              I am a passionate Front-End Developer from <span className="font-semibold">Feni, Bangladesh</span>.
+              I love turning complex problems into simple, beautiful, and intuitive user interfaces.
+              Currently learning and growing my skills in <span className="font-semibold">React, Tailwind CSS, and JavaScript</span>,
+              and I’m working towards becoming a Full-Stack Developer.
+            </p>
 
-            </div>
-        </section>
-    );
+            <p className="text-gray-800 font-medium mb-2">
+              <span className="text-blue-700 font-semibold">Email:</span> majedulislam223311@gmail.com
+            </p>
+            <p className="text-gray-800 font-medium mb-6">
+              <span className="text-blue-700 font-semibold">Place:</span> Noakhali, Companiganj
+            </p>
+
+            {/* Resume Button with Icon */}
+            <a
+              href="https://your-resume-link.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-blue-700 text-white px-8 py-3 rounded-lg shadow-md text-lg font-semibold hover:bg-blue-800 transition mx-auto md:mx-0"
+            >
+              <FaReact className="text-white text-xl" />
+              Download Resume
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default AboutMe;
