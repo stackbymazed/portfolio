@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 const projects = [
   {
     title: "Online-Group-Study",
-    description: "A simple and effective way to learn together with classmates. Join study groups, share notes, participate in live discussions, and prepare for exams more efficiently",
+    description:
+      "Learn together with classmates — join study groups, share notes, participate in discussions, and prepare efficiently.",
     image: "https://i.ibb.co/3yNSKrZx/Screenshot-2025-06-28-135823.png",
     liveLink: "https://assignment-11-e732e.web.app/",
     code: {
@@ -15,8 +16,9 @@ const projects = [
   },
   {
     title: "BhromonBarta",
-    description: "A platform to share your travel experiences, tips, and destination stories. Discover new places, plan trips, and connect with fellow travelers",
-    image: "https://i.ibb.co.com/C57hMGyJ/Screenshot-2025-08-12-223640.png",
+    description:
+      "A travel storytelling platform — share your travel stories, plan trips, and discover hidden destinations.",
+    image: "https://i.ibb.co/C57hMGyJ/Screenshot-2025-08-12-223640.png",
     liveLink: "https://bhromonbarta-6cc68.web.app/",
     code: {
       frontend: "https://github.com/stackbymazed/BhromonBarta",
@@ -25,7 +27,8 @@ const projects = [
   },
   {
     title: "Roommate-Finder",
-    description: "Find a trustworthy and compatible roommate quickly. Match based on budget, location, and lifestyle to find the perfect living companion.",
+    description:
+      "Find the perfect roommate by matching based on budget, location, and lifestyle preferences.",
     image: "https://i.ibb.co/tTPmjLcL/Screenshot-2025-06-28-135054.png",
     liveLink: "https://roommate-finder-5dc65.web.app/",
     code: {
@@ -35,34 +38,14 @@ const projects = [
   },
 ];
 
+// Overlay animation
 const overlayVariants = {
-  initial: { y: "100%" },
+  initial: { opacity: 0, y: 100 },
   hover: {
+    opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeInOut",
-      when: "beforeChildren",
-      staggerChildren: 0.1,
-    },
+    transition: { duration: 0.5, ease: "easeInOut" },
   },
-};
-
-const textVariants = {
-  initial: { opacity: 0, y: 20 },
-  hover: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-};
-
-const modalBackdrop = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.3 } },
-  exit: { opacity: 0, transition: { duration: 0.3 } },
-};
-
-const modalContent = {
-  hidden: { y: 50, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.3, ease: "easeOut" } },
-  exit: { y: 50, opacity: 0, transition: { duration: 0.3, ease: "easeIn" } },
 };
 
 const ProjectsMade = () => {
@@ -79,128 +62,178 @@ const ProjectsMade = () => {
   };
 
   return (
-    <div id="projects" className="bg-[#060242] text-white py-12 min-h-screen">
-      {/* Header */}
-      <div className="text-center mb-10">
-        <h2 className="text-4xl font-bold flex justify-center items-center gap-3">
-          <FaLaptopCode />
-          Projects <span className="text-yellow-400">Made</span>
-        </h2>
+    <section
+      id="projects"
+      className="relative bg-gradient-to-br from-[#05031a] via-[#0a0228] to-black text-white py-24 overflow-hidden"
+    >
+      {/* Animated Floating Glows */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          className="absolute w-80 h-80 bg-indigo-600 rounded-full blur-3xl opacity-20"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, 50, 0],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute right-0 bottom-0 w-96 h-96 bg-purple-700 rounded-full blur-3xl opacity-20"
+          animate={{
+            x: [0, -80, 0],
+            y: [0, -50, 0],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
       </div>
 
-      {/* Projects Grid */}
-      <div className="max-w-7xl mx-auto grid md:grid-cols-3 sm:grid-cols-2 gap-8 px-5">
-        {projects.map((project, idx) => (
-          <motion.div
-            key={idx}
-            className="relative rounded shadow-lg group cursor-pointer overflow-hidden"
-            initial="initial"
-            whileHover="hover"
-          >
-            {/* Image */}
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105"
-            />
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl sm:text-5xl font-extrabold flex justify-center items-center gap-3">
+            <FaLaptopCode className="text-indigo-400" />
+            Projects <span className="text-yellow-400">Made</span>
+          </h2>
+          <p className="text-gray-400 mt-4 text-lg max-w-2xl mx-auto">
+            My best creations — powered by design, functionality, and animation.
+          </p>
+        </motion.div>
 
-            {/* Title always visible below image */}
-            <h3 className="mt-3 text-xl font-bold text-yellow-400 text-center">
-              {project.title}
-            </h3>
-
-            {/* Animated Overlay with description and buttons on hover */}
+        {/* Project Cards */}
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-10">
+          {projects.map((project, idx) => (
             <motion.div
-              className="absolute bottom-0 left-0 right-0 bg-black/80 text-white p-5 flex flex-col items-center gap-3"
-              variants={overlayVariants}
+              key={idx}
+              className="relative group rounded-2xl overflow-hidden bg-gray-800/30 backdrop-blur-lg border border-gray-700 hover:border-indigo-500/40 transition-all duration-500 shadow-lg hover:shadow-indigo-500/30"
+              initial={{ opacity: 0, y: 60, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.6, delay: idx * 0.2 }}
+              viewport={{ once: true }}
+              whileHover={{ rotateX: 5, rotateY: -5, scale: 1.03 }}
             >
-              {/* Description */}
-              <motion.p
-                className="text-xl text-gray-300 text-center"
-                variants={textVariants}
-              >
-                {project.title}
-              </motion.p>
-              <motion.p
-                className="text-sm text-gray-300 text-center"
-                variants={textVariants}
-              >
-                {project.description}
-              </motion.p>
+              {/* Image */}
+              <motion.img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+              />
 
-              {/* Buttons */}
-              <motion.div className="flex gap-4 mt-2" variants={textVariants}>
-                <a
-                  href={project.liveLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded font-semibold text-sm transition flex items-center gap-2"
+              {/* Overlay */}
+              <motion.div
+                variants={overlayVariants}
+                initial="initial"
+                whileHover="hover"
+                className="absolute inset-0 bg-black/85 flex flex-col justify-center items-center text-center p-6 opacity-0 group-hover:opacity-100 transition-all"
+              >
+                <motion.h3
+                  className="text-2xl font-bold text-yellow-400 mb-2"
+                  initial={{ y: 20, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.2 }}
                 >
-                  <FaEye /> View
-                </a>
+                  {project.title}
+                </motion.h3>
+                <motion.p
+                  className="text-gray-300 text-sm mb-5"
+                  initial={{ y: 20, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  {project.description}
+                </motion.p>
+                <div className="flex gap-4">
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded font-semibold text-sm flex items-center gap-2"
+                  >
+                    <FaEye /> Live
+                  </a>
+                  <button
+                    onClick={() => openModal(project)}
+                    className="bg-white hover:bg-gray-200 text-black px-4 py-2 rounded font-semibold text-sm flex items-center gap-2"
+                  >
+                    <FaCode /> Code
+                  </button>
+                </div>
+              </motion.div>
+
+              {/* Title */}
+              <div className="p-4 text-center">
+                <h4 className="text-lg font-semibold text-indigo-300">
+                  {project.title}
+                </h4>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Modal */}
+        <AnimatePresence>
+          {modalOpen && selectedProject && (
+            <motion.div
+              className="fixed inset-0 bg-black/70 flex justify-center items-center z-50 backdrop-blur-md"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeModal}
+            >
+              <motion.div
+                className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 w-11/12 max-w-md border border-gray-700 shadow-2xl"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <h3 className="text-2xl font-bold mb-4 text-yellow-400 text-center">
+                  {selectedProject.title} — Repositories
+                </h3>
+
+                <div className="flex flex-col gap-4">
+                  <a
+                    href={selectedProject.code.frontend}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded-lg font-semibold text-center transition"
+                  >
+                    Frontend Repo
+                  </a>
+                  <a
+                    href={selectedProject.code.backend}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-white hover:bg-gray-200 text-black px-4 py-2 rounded-lg font-semibold text-center transition"
+                  >
+                    Backend Repo
+                  </a>
+                </div>
+
                 <button
-                  onClick={() => openModal(project)}
-                  className="bg-white hover:bg-gray-200 text-black px-4 py-2 rounded font-semibold text-sm transition flex items-center gap-2"
+                  onClick={closeModal}
+                  className="absolute top-3 right-4 text-gray-400 hover:text-yellow-400 text-2xl font-bold"
                 >
-                  <FaCode /> Code
+                  &times;
                 </button>
               </motion.div>
             </motion.div>
-          </motion.div>
-        ))}
+          )}
+        </AnimatePresence>
       </div>
-
-      {/* Modal */}
-      <AnimatePresence>
-        {modalOpen && selectedProject && (
-          <motion.div
-            className="fixed inset-0 bg-opacity-50 flex justify-center items-center z-50 backdrop-blur-sm bg-black"
-            variants={modalBackdrop}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            onClick={closeModal}
-          >
-            <motion.div
-              className="bg-[#12183b] rounded-lg p-6 w-11/12 max-w-md relative"
-              variants={modalContent}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h3 className="text-2xl font-bold mb-4 text-yellow-400 text-center">
-                {selectedProject.title} - Code Repositories
-              </h3>
-
-              <div className="flex flex-col gap-4">
-                <a
-                  href={selectedProject.code.frontend}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded font-semibold text-center transition"
-                >
-                  Frontend Repo
-                </a>
-                <a
-                  href={selectedProject.code.backend}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-white hover:bg-gray-200 text-black px-4 py-2 rounded font-semibold text-center transition"
-                >
-                  Backend Repo
-                </a>
-              </div>
-
-              <button
-                onClick={closeModal}
-                className="absolute top-3 right-3 text-gray-300 hover:text-yellow-400 text-xl font-bold"
-                aria-label="Close modal"
-              >
-                &times;
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+    </section>
   );
 };
 

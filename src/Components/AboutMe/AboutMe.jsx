@@ -1,62 +1,108 @@
 import React from 'react';
-import { FaReact, FaUser } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { FaUser } from 'react-icons/fa';
 
 const AboutMe = () => {
   return (
-    <section id="about" className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-      <div className="max-w-6xl mx-auto">
+    <section
+      id="about"
+      className="relative py-20 px-6 sm:px-10 lg:px-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden"
+    >
+      {/* Background Glow Animation */}
+      <div className="absolute inset-0">
+        <div className="absolute -top-20 left-10 w-72 h-72 bg-purple-600 rounded-full blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600 rounded-full blur-3xl opacity-20 animate-pulse"></div>
+      </div>
 
-        {/* Header with Logo and Title */}
-        <div className="flex items-center justify-center gap-4 mb-12">
-          <FaUser className="text-blue-600 text-4xl" />
-          <h2 className="text-3xl sm:text-4xl font-bold text-black">
-            About <span className="text-purple-600">Me</span>
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Header */}
+        <motion.div
+          className="flex items-center justify-center gap-4 mb-12"
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
+          <FaUser className="text-indigo-400 text-4xl" />
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-100">
+            About <span className="text-indigo-500">Me</span>
           </h2>
-        </div>
+        </motion.div>
 
-        {/* Main Content: Image & Text side by side and center-aligned */}
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-8 lg:px-20">
+        {/* Main Content */}
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-10 lg:gap-16">
           {/* Profile Image */}
-          <div className="flex-1 flex justify-center md:justify-start">
-            <img
-              src="https://i.ibb.co/qFY7XSYf/Air-Brush-20240201194436-2.jpg"
-              alt="Majedul Islam"
-              className="rounded-lg shadow-lg w-4/5 sm:w-3/5 md:w-full max-w-sm object-cover"
-            />
-          </div>
+          <motion.div
+            className="flex-1 flex justify-center md:justify-start"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="relative group">
+              {/* Outer Glow Ring */}
+              <motion.div
+                className="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500 to-blue-600 blur-xl opacity-60 group-hover:opacity-80 transition"
+                animate={{ scale: [1, 1.05, 1], opacity: [0.4, 0.7, 0.4] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              ></motion.div>
+
+              <motion.img
+                src="https://i.ibb.co/qFY7XSYf/Air-Brush-20240201194436-2.jpg"
+                alt="Majedul Islam"
+                className="relative rounded-xl shadow-2xl w-64 sm:w-80 md:w-96 object-cover border-4 border-indigo-600"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 150 }}
+              />
+            </div>
+          </motion.div>
 
           {/* Text Info */}
-          <div className="flex-1 text-center md:text-left">
-            <h3 className="text-2xl sm:text-3xl font-bold mb-2">I'm Majedul Islam</h3>
-            <p className="text-blue-700 font-semibold mb-4 text-lg sm:text-xl">
+          <motion.div
+            className="flex-1 text-center md:text-left"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h3 className="text-3xl sm:text-4xl font-bold mb-2 text-gray-100">
+              I'm <span className="text-indigo-400">Majedul Islam</span>
+            </h3>
+            <p className="text-indigo-400 font-semibold mb-4 text-lg sm:text-xl">
               Front-End Developer
             </p>
 
-            <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-6 max-w-xl mx-auto md:mx-0">
-              I am a passionate Front-End Developer from <span className="font-semibold">Feni, Bangladesh</span>.
-              I love turning complex problems into simple, beautiful, and intuitive user interfaces.
-              Currently learning and growing my skills in <span className="font-semibold">React, Tailwind CSS, and JavaScript</span>,
-              and I’m working towards becoming a Full-Stack Developer.
+            <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-6 max-w-xl mx-auto md:mx-0">
+              I am a passionate Front-End Developer from{" "}
+              <span className="font-semibold text-indigo-400">Feni, Bangladesh</span>.
+              I love turning complex problems into beautiful and intuitive user interfaces.
+              Currently learning and growing my skills in{" "}
+              <span className="font-semibold text-indigo-400">
+                React, Tailwind CSS, and JavaScript
+              </span>
+              , aiming to become a Full-Stack Developer soon.
             </p>
 
-            <p className="text-gray-800 font-medium mb-2">
-              <span className="text-blue-700 font-semibold">Email:</span> majedulislam223311@gmail.com
-            </p>
-            <p className="text-gray-800 font-medium mb-6">
-              <span className="text-blue-700 font-semibold">Place:</span> Noakhali, Companiganj
-            </p>
+            <div className="text-gray-300 mb-6 space-y-2">
+              <p>
+                <span className="text-indigo-400 font-semibold">Email:</span>{" "}
+                majedulislam223311@gmail.com
+              </p>
+              <p>
+                <span className="text-indigo-400 font-semibold">Place:</span>{" "}
+                Noakhali, Companiganj
+              </p>
+            </div>
 
-            {/* Resume Button with Icon */}
-            <a
-              href="https://drive.google.com/file/d/1MI_hWKpJVUjTNC2wskCkd7Cnzot69y1D/view"
+            {/* Resume Button */}
+            <motion.a
+              href="https://drive.google.com/file/d/13SVUHkWFsS3yLFGr_sVuyQ6-mahWX0EJ/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-blue-700 text-white px-8 py-3 rounded-lg shadow-md text-lg font-semibold hover:bg-blue-800 transition mx-auto md:mx-0"
+              className="inline-flex items-center gap-3 px-8 py-3 rounded-full bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-lg font-semibold shadow-lg hover:shadow-indigo-500/50 transition"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
-              {/* <FaReact className="text-white text-xl" /> */}
               Download Resume
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
         </div>
       </div>
     </section>

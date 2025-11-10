@@ -7,10 +7,11 @@ import EducationSection from '../../Components/EducationSection/EducationSection
 import Contact from '../Contact/Contact';
 
 import Projects from '../../Components/Projects/projects ';
+// import { ParticlesBackground } from '../../Components/ParticlesBackground/ParticlesBackground';
 
 const Home = () => {
   return (
-    <div className="relative overflow-hidden min-h-screen">
+    <div >
       <Banner />
       <AboutMe />
       <Skills />
