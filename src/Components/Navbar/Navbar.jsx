@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { HashLink } from "react-router-hash-link";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
@@ -15,30 +15,31 @@ const Navbar = () => {
 
   const [activeLink, setActiveLink] = useState("#home");
   const [menuOpen, setMenuOpen] = useState(false);
+  const drawerRef = useRef();
+
+  // Close drawer on outside click
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (drawerRef.current && !drawerRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+    if (menuOpen) document.addEventListener("mousedown", handleClickOutside);
+    else document.removeEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [menuOpen]);
 
   return (
-    <motion.nav
-      initial={{ y: -60, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 w-full bg-white/40 backdrop-blur-lg shadow-md z-50 px-6 lg:px-16 flex items-center justify-between h-16 border-b border-white/20"
-    >
+    <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between h-16 px-6 lg:px-16 bg-white/30 backdrop-blur-lg border-b border-white/20">
       {/* Logo */}
-      <motion.div
-        whileHover={{ scale: 1.1 }}
-        className="font-extrabold text-2xl bg-gradient-to-r from-indigo-600 to-blue-500 text-transparent bg-clip-text cursor-pointer"
-      >
+      <div className="font-extrabold text-2xl bg-gradient-to-r from-indigo-600 to-blue-500 text-transparent bg-clip-text cursor-pointer">
         Nayem<span className="text-indigo-600">.Io</span>
-      </motion.div>
+      </div>
 
       {/* Desktop Menu */}
       <ul className="hidden md:flex space-x-8 items-center">
         {navItems.map((item) => (
-          <motion.li
-            key={item.name}
-            whileHover={{ y: -2 }}
-            transition={{ duration: 0.2 }}
-          >
+          <li key={item.name}>
             <HashLink
               smooth
               to={`/${item.path}`}
@@ -51,11 +52,9 @@ const Navbar = () => {
             >
               {item.name}
             </HashLink>
-          </motion.li>
+          </li>
         ))}
-
-        {/* Resume Button */}
-        <motion.li whileHover={{ scale: 1.05 }}>
+        <li>
           <a
             href="https://drive.google.com/file/d/13SVUHkWFsS3yLFGr_sVuyQ6-mahWX0EJ/view?usp=sharing"
             target="_blank"
@@ -64,26 +63,25 @@ const Navbar = () => {
           >
             Resume
           </a>
-        </motion.li>
+        </li>
       </ul>
 
       {/* Mobile Menu Icon */}
-      <div
-        className="md:hidden text-2xl text-gray-800 cursor-pointer"
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
+      <div className="md:hidden text-2xl text-gray-800 cursor-pointer" onClick={() => setMenuOpen(!menuOpen)}>
         {menuOpen ? <FaTimes /> : <FaBars />}
       </div>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
+            ref={drawerRef}
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="fixed top-0 right-0 w-3/4 h-full bg-white/80 backdrop-blur-md shadow-2xl z-50 flex flex-col items-center justify-center space-y-8"
+            className="fixed top-0 right-0 w-3/4 max-w-xs h-full z-50 flex flex-col items-center justify-center p-8
+                       bg-gradient-to-b from-indigo-900 via-purple-900 to-black backdrop-blur-xl shadow-2xl border-l border-indigo-700/40 rounded-l-3xl"
           >
             {navItems.map((item) => (
               <HashLink
@@ -94,27 +92,28 @@ const Navbar = () => {
                   setActiveLink(item.path);
                   setMenuOpen(false);
                 }}
-                className={`text-xl font-semibold ${
-                  activeLink === item.path
-                    ? "text-indigo-600 underline"
-                    : "text-gray-800 hover:text-indigo-600"
+                className={`text-xl font-semibold transition-colors my-2 ${
+                  activeLink === item.path ? "text-yellow-400 underline" : "text-white hover:text-yellow-400"
                 }`}
               >
                 {item.name}
               </HashLink>
             ))}
+
+
             <a
               href="https://drive.google.com/file/d/13SVUHkWFsS3yLFGr_sVuyQ6-mahWX0EJ/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 px-6 py-2 bg-gradient-to-r from-indigo-600 to-blue-500 text-white rounded-lg font-semibold shadow-lg"
+              className="mt-6 px-6 py-2 bg-yellow-400 text-black rounded-lg font-semibold shadow-lg w-full text-center transition hover:bg-yellow-500"
+              onClick={() => setMenuOpen(false)}
             >
               Resume
             </a>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </nav>
   );
 };
 

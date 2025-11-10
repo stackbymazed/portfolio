@@ -87,7 +87,7 @@ const AboutMe = () => {
               </p>
               <p>
                 <span className="text-indigo-400 font-semibold">Place:</span>{" "}
-                Noakhali, Companiganj
+                Noakhali, Companiganj   
               </p>
             </div>
 
