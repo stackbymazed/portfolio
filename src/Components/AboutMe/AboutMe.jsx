@@ -47,7 +47,7 @@ const AboutMe = () => {
 
               <motion.img
                 src="https://i.ibb.co/qFY7XSYf/Air-Brush-20240201194436-2.jpg"
-                alt="Majedul Islam"
+                alt="Mazedul Islam"
                 className="relative rounded-xl shadow-2xl w-64 sm:w-80 md:w-96 object-cover border-4 border-indigo-600"
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 150 }}
